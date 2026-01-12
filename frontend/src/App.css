@@ -1,42 +1,238 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
+/* =============================================================================
+   FILE: frontend/src/App.css
+   PURPOSE: Styles for the dashboard component
+   ============================================================================= */
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+/* -----------------------------------------------------------------------------
+   LAYOUT: DASHBOARD CONTAINER
+   ----------------------------------------------------------------------------- */
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+   .dashboard {
+    /* min-height ensures footer stays at bottom even with little content */
+    min-height: 100vh;
+    
+    /* Flexbox column layout for header-content-footer structure */
+    display: flex;
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+  
+  /* -----------------------------------------------------------------------------
+     HEADER
+     ----------------------------------------------------------------------------- */
+  
+  .dashboard-header {
+    background: linear-gradient(135deg, #1a365d 0%, #2d5a87 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  
+  .dashboard-header h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+  
+  .dashboard-header p {
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+  
+  /* -----------------------------------------------------------------------------
+     MAIN CONTENT
+     ----------------------------------------------------------------------------- */
+  
+  .dashboard-content {
+    /* flex: 1 makes this section grow to fill available space */
+    flex: 1;
+    
+    /* Padding around content */
+    padding: 2rem;
+    
+    /* Max width prevents content from being too wide on large screens */
+    max-width: 1400px;
+    
+    /* Center the content horizontally */
+    margin: 0 auto;
+    
+    /* Full width up to max-width */
+    width: 100%;
+  }
+  
+  /* -----------------------------------------------------------------------------
+     SUMMARY CARDS
+     ----------------------------------------------------------------------------- */
+  
+  .summary-cards {
+    /* CSS Grid for responsive card layout */
+    display: grid;
+    
+    /* Auto-fit creates as many columns as will fit */
+    /* minmax sets minimum 250px, maximum 1fr (equal share) */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    
+    /* Gap between cards */
+    gap: 1.5rem;
+    
+    /* Space below this section */
+    margin-bottom: 2rem;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    
+    /* Subtle shadow for depth */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    
+    /* Smooth transition for hover effect */
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .card:hover {
+    /* Slight lift on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card h3 {
+    color: #1a365d;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+  
+  .card-stat {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.75rem;
+  }
+  
+  .stat-value {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #2d5a87;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    color: #666;
+  }
+  
+  /* -----------------------------------------------------------------------------
+     CHARTS
+     ----------------------------------------------------------------------------- */
+  
+  .charts-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .chart-container {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chart-container h2 {
+    color: #1a365d;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* -----------------------------------------------------------------------------
+     DATA TABLE
+     ----------------------------------------------------------------------------- */
+  
+  .data-table-section {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
+  
+  .data-table-section h2 {
+    color: #1a365d;
+    font-size: 1.125rem;
+    margin-bottom: 1rem;
+  }
+  
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .data-table th {
+    background: #f7fafc;
+    font-weight: 600;
+    color: #1a365d;
+  }
+  
+  .data-table tr:hover {
+    background: #f7fafc;
+  }
+  
+  /* -----------------------------------------------------------------------------
+     FOOTER
+     ----------------------------------------------------------------------------- */
+  
+  .dashboard-footer {
+    background: #1a365d;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.875rem;
+  }
+  
+  /* -----------------------------------------------------------------------------
+     LOADING & ERROR STATES
+     ----------------------------------------------------------------------------- */
+  
+  .loading,
+  .error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .error {
+    color: #c53030;
+  }
+  
+  .error p:first-child {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  /* -----------------------------------------------------------------------------
+     RESPONSIVE ADJUSTMENTS
+     ----------------------------------------------------------------------------- */
+  
+  /* On smaller screens, stack charts vertically */
+  @media (max-width: 768px) {
+    .charts-row {
+      grid-template-columns: 1fr;
+    }
+    
+    .dashboard-header h1 {
+      font-size: 1.5rem;
+    }
+    
+    .dashboard-content {
+      padding: 1rem;
+    }
+  }
