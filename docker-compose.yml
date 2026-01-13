@@ -1,0 +1,51 @@
+# =============================================================================
+# FILE: docker-compose.yml
+# PURPOSE: Define and run multi-container application
+# =============================================================================
+
+# Compose file version. NOT NEEDED FOR DOCKER COMPOSE V2 since it auto detects version
+#version: '3.8'
+
+# Define our services (containers)
+services:
+  
+  # ---------------------------------------------------------------------------
+  # BACKEND SERVICE
+  # ---------------------------------------------------------------------------
+  backend:
+    # Build from backend folder's Dockerfile
+    build: ./backend
+    
+    # Container name (optional, makes it easier to reference)
+    container_name: fleet-backend
+    
+    # Port mapping: host:container
+    # Access backend at localhost:5000
+    ports:
+      - "5000:5000"
+    
+    # Environment variables
+    environment:
+      - FLASK_ENV=development
+    
+    # Restart policy
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # FRONTEND SERVICE
+  # ---------------------------------------------------------------------------
+  frontend:
+    # Build from frontend folder's Dockerfile
+    build: ./frontend
+    
+    container_name: fleet-frontend
+    
+    # Port mapping: localhost:3000 -> container:80
+    ports:
+      - "3000:80"
+    
+    # Start frontend after backend is ready
+    depends_on:
+      - backend
+    
+    restart: unless-stopped
